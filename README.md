@@ -12,9 +12,8 @@
 
 ## NeuN_Loops folder: code used for enhancer-promoter interactions analyses
 1. Comparison between TADs and promoter-anchored interactions
-2. Enhancer-promoter interactions linked to gene expression 
+2. Cellular expression levels of genes assigned to enhancer-promoter interactions in NeuN+ and NeuN- cells
 3. TF motif analysis and expression levels of corresponding TFs
-4. Cellular expression levels of genes assigned to enhancer-promoter interactions in NeuN+ and NeuN- cells
 
 ## Glu_GABA folder: code for Glu and GABA loop analysis
 1. Linking Glu vs. GABA H3K27ac peaks to their cognate genes using NeuN+ promoter-anchored interactions
