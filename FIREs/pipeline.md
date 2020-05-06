@@ -1,1 +1,0 @@
-pipeline for FIREs analysis
