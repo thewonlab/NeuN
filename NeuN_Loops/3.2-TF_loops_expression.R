@@ -4,7 +4,7 @@ library(GenomicRanges)
 library(plyr)
 library(reshape)
 setwd("/nas/longleaf/home/hubenxia/project/RNA-seq/neuron_vs_glia/known_gene/")
-load("/proj/hyejunglab/NeuN/RNAseq/analysis/datExprMeta.rda")
+
 FPKM<-read.table("neuron_glia_FPKM_dot_remove.txt",header=T,sep="\t",row.names=1)
 colnames(FPKM)<-c("CMC_HBCC_028_neg","CMC_HBCC_025_pos","CMC_HBCC_028_pos","CMC_HBCC_027_pos",
                         "CMC_HBCC_025_neg","CMC_HBCC_027_neg","CMC_HBCC_016_pos","CMC_HBCC_016_neg")
