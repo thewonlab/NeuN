@@ -18,13 +18,11 @@ NeuNneg_TSS_interacting_region<-read.table("NeuNneg_TSS_interacting_region_fixed
 NeuNneg_TSS_interacting_region_number<-nrow(NeuNneg_TSS_interacting_region)
 NeuNneg_TSS_interacting_region_DF<-NeuNneg_TSS_interacting_region[,c(1,4,5)]
 NeuNneg_loops_number<-nrow(unique(NeuNneg_TSS_interacting_region_DF))
-#NeuNneg_loops_number:73598
 
 NeuNpos_TSS_interacting_region = read.table("NeuNpos_TSS_interacting_region_fixed.bed", header=T,sep="\t")
 NeuNpos_TSS_interacting_region_number<-nrow(NeuNpos_TSS_interacting_region)
 NeuNpos_TSS_interacting_region_DF<-NeuNpos_TSS_interacting_region[,c(1,4,5)]
 NeuNpos_loops_number<-nrow(unique(NeuNpos_TSS_interacting_region_DF))
-#NeuNpos_loops_number:75331
 
 TSS_ranges.NeuNpos<-GRanges(seqnames=NeuNpos_TSS_interacting_region[,1], IRanges(NeuNpos_TSS_interacting_region[,2], NeuNpos_TSS_interacting_region[,3]))
 TSS_ranges.NeuNneg<-GRanges(seqnames=NeuNneg_TSS_interacting_region[,1], IRanges(NeuNneg_TSS_interacting_region[,2],NeuNneg_TSS_interacting_region[,3]))
@@ -72,13 +70,6 @@ labs(title="proportion of TSS overlapping with Promoters \n all_tss_pos:187674 \
 theme_bw() + theme(panel.grid.major =element_blank(), panel.grid.minor = element_blank())
 dev.off()
 
-#NeuNpos_TSS_interacting_region_number:187674
-#NeuNneg_TSS_interacting_region_number:167551
-#TSS_pro.NeuNpos_DF_fire_number:15995
-#TSS_pro.NeuNneg_DF_fire_number:15898
-#NeuNpos_TSS_interacting_nonpromoter_number:171679
-#NeuNneg_TSS_interacting_nonpromoter_number:151653
-
 ### [3] for gene symbol
 TSS_NeuNposensg = unique(TSS_pro.NeuNpos$gene)
 TSS_NeuNnegensg = unique(TSS_pro.NeuNneg$gene)
@@ -88,8 +79,6 @@ TSS_NeuNneggene = geneAnno1[geneAnno1$ensembl_gene_id %in% TSS_NeuNnegensg, "hgn
 TSS_NeuNposgene = TSS_NeuNposgene[TSS_NeuNposgene!=""]
 TSS_NeuNneggene = TSS_NeuNneggene[TSS_NeuNneggene!=""]
 
-#length(TSS_NeuNposgene):11904
-#length(TSS_NeuNneggene):11776
 write.table(file="TSS_NeuNposgene.txt",as.data.frame(TSS_NeuNposgene),quote=F,row.names=F)
 write.table(file="TSS_NeuNneggene.txt",as.data.frame(TSS_NeuNneggene),quote=F,row.names=F)
 
@@ -104,8 +93,6 @@ mcols(inter_ranges.NeuNneg)<-TSS_pro.NeuNneg_DF[ ,c("start","end","gene")]
 neuron<-read.table("neuron_H3K27ac_differential_peak.txt",sep="\t",header=T,quote="")
 glia<-read.table("non-neuron_H3K27ac_differential_peak.txt",sep="\t",header=T,quote="")
 ############all differential peaks
-#nrow(neuron):59588
-#nrow(glia):58120
 
 neuronranges = GRanges(seqnames=neuron$Chrom, IRanges(neuron$Start, neuron$End))
 gliaranges = GRanges(seqnames=glia$Chrom, IRanges(glia$Start, glia$End))
@@ -124,13 +111,8 @@ write.table(file="inter_peak.NeuNpos_DF.txt",unique(inter_peak.NeuNpos_DF),sep="
 inter_peak.NeuNpos_DF_peak<-inter_peak.NeuNpos_DF[,c(8:10)]
 inter_peak.NeuNpos_DF_peak_number<-nrow(unique(inter_peak.NeuNpos_DF_peak))
 
-#inter_peak.NeuNpos_DF_peak_number:11926
-#inter_peak.NeuNneg_DF_peak_number:15067
-
 neuron_enhancer_promoter<-nrow(unique(read.table("inter_peak.NeuNpos_DF_unique.txt",sep="\t",header=T)[,1:6]))
 glia_enhancer_promoter<-nrow(unique(read.table("inter_peak.NeuNneg_DF_unique.txt",sep="\t",header=T)[,1:6]))
-
-
 
 olap = findOverlaps(inter_ranges.NeuNneg, gliaranges)
 inter_peak.NeuNneg = inter_ranges.NeuNneg[queryHits(olap)]
@@ -172,13 +154,6 @@ labs(title="proportion of Loops overlapping with peaks \n all_Loops_pos:187674 \
 theme_bw() + theme(panel.grid.major =element_blank(), panel.grid.minor = element_blank())
 dev.off()
 
-#NeuNpos_TSS_interacting_region_number:187674
-#NeuNneg_TSS_interacting_region_number:167551
-#inter_peak.NeuNpos_DF_fire_number:16370
-#inter_peak.NeuNneg_DF_fire_number:19418
-#NeuNpos_interacting_nonpeak_number:171304
-#NeuNneg_interacting_nonpeak_number:148133
-
 ### [3] for gene symbol
 inter_peak_NeuNposensg = unique(inter_peak.NeuNpos$gene)
 inter_peak_NeuNnegensg = unique(inter_peak.NeuNneg$gene)
@@ -187,11 +162,9 @@ inter_peak_NeuNneggene = geneAnno1[geneAnno1$ensembl_gene_id %in% inter_peak_Neu
 
 inter_peak_NeuNposgene = inter_peak_NeuNposgene[inter_peak_NeuNposgene!=""]
 inter_peak_NeuNneggene = inter_peak_NeuNneggene[inter_peak_NeuNneggene!=""]
-#length(unique(inter_peak_NeuNposgene)):11190
-#length(unique(inter_peak_NeuNneggene)):12596
+
 write.table(file="inter_peak_NeuNposgene.txt",as.data.frame(unique(inter_peak_NeuNposgene)),quote=F,row.names=F)
 write.table(file="inter_peak_NeuNneggene.txt",as.data.frame(unique(inter_peak_NeuNneggene)),quote=F,row.names=F)
-
 
 ###################for heatmap
 targetgene = list(unique(inter_peak_NeuNposgene),unique(inter_peak_NeuNneggene))
