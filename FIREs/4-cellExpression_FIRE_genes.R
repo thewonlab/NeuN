@@ -18,9 +18,9 @@ NeuNneggene = read.table("glia_diffFIRE_promoter_gene.txt", header=F,sep="\t")  
 targetgene = list(NeuNposgene, NeuNneggene)
 diseasename = c("NeuNpos", "NeuNneg")
 
+cellexp<-read.table("Capstone4_singlecellexpression_adultbrain.txt", header=T)
 rownames(cellexp) = cellexp[,1]
 cellexp = cellexp[,-1]
-
 datExpr = scale(cellexp,center=T, scale=F) 
 
 exprdat = vector(mode="list", length=length(targetgene))
