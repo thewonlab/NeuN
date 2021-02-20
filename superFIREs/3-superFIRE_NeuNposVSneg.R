@@ -51,9 +51,9 @@ write.table(file="NeuNneggene_superFIRE_H3K27ac.txt",as.data.frame(NeuNneggene),
 targetgene = list(NeuNposgene, NeuNneggene)
 diseasename = c("NeuNpos", "NeuNneg")
 
+cellexp<-read.table("Capstone4_singlecellexpression_adultbrain.txt", header=T)
 rownames(cellexp) = cellexp[,1]
 cellexp = cellexp[,-1]
-
 datExpr = scale(cellexp,center=T, scale=F) 
 
 exprdat = vector(mode="list", length=length(targetgene))
