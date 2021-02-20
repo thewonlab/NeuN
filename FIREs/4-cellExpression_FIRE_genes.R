@@ -12,8 +12,8 @@ library(ggplot2)
 library(reshape2)
 library(dplyr)
 setwd("/proj/hyejunglab/NeuN/FIRE")
-NeuNposgene = read.table("neuron_diffFIRE_promoter_gene.txt", header=F,sep="\t")  ##no extend
-NeuNneggene = read.table("glia_diffFIRE_promoter_gene.txt", header=F,sep="\t")  ##no extend
+NeuNposgene = read.table("neuron_diffFIRE_promoter_gene.txt", header=F,sep="\t")[,1]  ##no extend
+NeuNneggene = read.table("glia_diffFIRE_promoter_gene.txt", header=F,sep="\t")[,1]  ##no extend
 
 targetgene = list(NeuNposgene, NeuNneggene)
 diseasename = c("NeuNpos", "NeuNneg")
